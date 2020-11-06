@@ -54,11 +54,11 @@ jQuery.noConflict();
              '<div class="kintoneplugin-select">'+
              '<select id ="drop_car">'+
              '<option value = "">-</option>'+
-             '<option value = "ステラ">ステラ</option>'+
-             '<option value = "ミライース5752">ミライース5752</option>'+
-             '<option value = "ミライース">ミライース</option>'+
-             '<option value = "グレイス">グレイス</option>'+
-             '<option value = "ノート">ノート</option>'+
+             '<option value = "車両１">車両１</option>'+
+             '<option value = "車両２">車両２</option>'+
+             '<option value = "車両３">車両３</option>'+
+             '<option value = "車両４">車両４</option>'+
+             '<option value = "車両５">車両５</option>'+
              '</select><br>'+
              '</div>'+
              '</div>'+
@@ -120,7 +120,7 @@ jQuery.noConflict();
             
               case '1': body = {
                     
-                                "app":329,
+                                "app":appID,
 
                                 "record": {
                                   "外出時刻": {
@@ -146,7 +146,7 @@ jQuery.noConflict();
                             break;
               case '2' : body = {
                     
-                    "app":329,
+                    "app":appID,
 
                     "record": {
 
@@ -168,7 +168,7 @@ jQuery.noConflict();
                 
               case '3' : body = {
                     
-                    "app":329,
+                    "app":appID,
 
                     "record": {
                       
@@ -203,7 +203,7 @@ jQuery.noConflict();
 kintone.events.on('app.record.index.show',async(event)=> {
 
   //カスタマイズビューでなければreturnする
-  if(event.viewId !== 5737617){
+  if(event.viewId !== viewID){
     return;
   }
   
@@ -212,7 +212,7 @@ kintone.events.on('app.record.index.show',async(event)=> {
   
   //リクエストボディの定義
   var body = {
-    "app":329,
+    "app":appID,
     "query" : 'status not in ("在席")',
     "fields" : ['氏名','行先等','外出時刻','帰所予定時刻','車両','レコード番号'],
     "totalCount":true
@@ -258,7 +258,7 @@ kintone.events.on('app.record.index.show',async(event)=> {
       
         //リクエストボディの定義
         var g_body = {
-          "app":329,
+          "app":appID,
           "id":id
         };
       
@@ -267,7 +267,7 @@ kintone.events.on('app.record.index.show',async(event)=> {
           
         //レコード更新するリクエストボディ定義
         var p_body = {
-          "app":329,
+          "app":appID,
           "id":id,
           "record":{
             "status":{
