@@ -185,7 +185,7 @@ jQuery.noConflict();
 
         //カスタマイズビューでなければreturnする
         if(event.viewId !== viewID){
-        return;
+            return;
         }
         var re_no,re_name,re_de,re_time,re_retime,re_car;
         var body = {
@@ -193,7 +193,7 @@ jQuery.noConflict();
             "query" : 'status not in ("在席")',
             "fields" : ['氏名','行先等','外出時刻','帰所予定時刻','車両','レコード番号'],
             "totalCount": true
-        }
+        };
 
         //APIリクエスト
         const resp = await kintone.api('/k/v1/records','GET',body);
